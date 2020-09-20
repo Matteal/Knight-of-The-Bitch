@@ -5,27 +5,25 @@
 #include "../SDL/Sprite.h"
 #include "Tile.h"
 
-enum TYPE_BOAT{Cruiser=0, Armored=1, Raider=2}; // Attack, defence, sneaky
-
-TYPE_BOAT findType(int type);
 
 class Boat : public Sprite
 {
     public:
-        Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type);
+        Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posx, int posy);
         ~Boat();
 
         void attack(Boat &target);
 
+        void setCurrentTile(int x, int y);
         void setCurrentTile(Tile* tile);
-        Tile* getCurrentTile();
 
-        TYPE_BOAT getTypeBoat();
+        Tile* getCurrentTile();
 
         void render(float interpolation);
 
     protected:
 
+        //SDL_Texture* textureR;
         SDL_Texture* m_textureL;
 
         bool m_toggleTexture;
@@ -36,14 +34,20 @@ class Boat : public Sprite
         int m_posRenderX;
         int m_posRenderY;
 
-        TYPE_BOAT m_typeBoat;
+        int m_argent;
+        int m_tour;
+        int m_armor;
+
+
+    private:
 };
 
-//class Player : public Boat
+
+
+//class Player : public Bateau
 //{
 //    public:
-//        Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type);
-//        Player(Boat* boat);
+//        Player(int posx, int posy);
 //
 //    private:
 //        int m_level;
